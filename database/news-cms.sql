@@ -44,6 +44,7 @@ CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
+  `post_views` int(11) NOT NULL DEFAULT 0,
   `category` varchar(100) NOT NULL,
   `post_date` varchar(50) NOT NULL,
   `author` int(11) NOT NULL,
