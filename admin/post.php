@@ -64,7 +64,7 @@
                                 }
                             }else{
                                 echo "<tr>
-                                    <td colspan='7'><h1 class='text-muted'>There is no data to show!</h1></td>
+                                    <td colspan='8'><h1 class='text-muted'>There is no data to show!</h1></td>
                                 </tr>";
                             }
                         ?> 
