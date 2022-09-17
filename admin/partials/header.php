@@ -58,7 +58,7 @@
                                 <?php } ?>
                             </div>
                             <div>
-                                <li><a href="#">Settings</a></li>
+                                <li><a href="user-settings.php">Settings</a></li>
                                 <li><a href="partials/logout.php">Logout</a></li>
                             </div>   
                         </ul>
