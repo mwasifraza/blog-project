@@ -16,8 +16,8 @@
             $file_size = $_FILES['fileToUpload']['size'];
             $file_tmp = $_FILES['fileToUpload']['tmp_name'];
             $file_type = $_FILES['fileToUpload']['type'];
-            $get_ext = explode('.', $file_name);
-            $file_ext = end($get_ext);
+            $get_name = explode('.', $file_name);
+            $file_ext = end($get_name);
 
             if(in_array($file_ext, $extensions) === false){
                 $errors[] = "Only images are allowed!";
@@ -26,14 +26,15 @@
                 $errors[] = "File size must be 2MB or lower!";
             }
             if(empty($errors) == true){
-                move_uploaded_file($file_tmp, "upload/".$file_name);
+                $img_name = $get_name[0].'_'.date("jmYHisu").'.'.$file_ext;
+                move_uploaded_file($file_tmp, "upload/".$img_name);
             }else{
                 print_r($errors);
                 die();
             }
         }
         $query = "INSERT INTO post(title,description,category,post_date,author,post_img) 
-                  VALUES('{$title}','{$postdesc}',{$postcat},'{$postdate}',{$author},'{$file_name}');";
+                  VALUES('{$title}','{$postdesc}',{$postcat},'{$postdate}',{$author},'{$img_name}');";
         $query .= "UPDATE category SET post = post + 1 WHERE category_id = {$postcat}";
         $fire = mysqli_multi_query($conn, $query) or die("Query fails: Insert");
         if($fire){
