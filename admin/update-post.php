@@ -11,8 +11,8 @@
             $file_size = $_FILES['new-image']['size'];
             $file_tmp = $_FILES['new-image']['tmp_name'];
             $file_type = $_FILES['new-image']['type'];
-            $get_ext = explode('.', $file_name);
-            $file_ext = end($get_ext);
+            $get_name = explode('.', $file_name);
+            $file_ext = end($get_name);
 
             if(in_array($file_ext, $extensions) === false){
                 $errors[] = "Only images are allowed!";
@@ -21,7 +21,8 @@
                 $errors[] = "File size must be 2MB or lower!";
             }
             if(empty($errors) == true){
-                move_uploaded_file($file_tmp, "upload/".$file_name);
+                $img_name = $get_name[0].'_'.date("jmYHisu").'.'.$file_ext;
+                move_uploaded_file($file_tmp, "upload/".$img_name);
             }else{
                 print_r($errors);
                 die();
@@ -32,7 +33,7 @@
         $postdesc = mysqli_real_escape_string($conn, trim($_POST['postdesc']));
         $postcat = mysqli_real_escape_string($conn, $_POST['postcat']);
 
-        $upd_sql = "UPDATE post SET title='$title', description='$postdesc', category=$postcat, post_img='$file_name' 
+        $upd_sql = "UPDATE post SET title='$title', description='$postdesc', category=$postcat, post_img='$img_name' 
                     WHERE post_id=$pid";
         $run_sql = mysqli_query($conn, $upd_sql) or die("Query fails: Update");
         if($run_sql){
