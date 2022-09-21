@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <span>© Copyright 2019 News | Powered by <a href="http://www.yahoobaba.net/">Yahoo Baba</a></span>
+            <span><i class="fa fa-copyright text-white"></i> 2022 News Site</span>
             </div>
         </div>
     </div>
